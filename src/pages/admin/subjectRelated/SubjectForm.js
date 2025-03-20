@@ -116,7 +116,7 @@ const SubjectForm = () => {
                                 required
                             />
                         </Grid>
-                        <Grid item xs={4}>
+                        {/* <Grid item xs={4}>
                             <TextField
                                 fullWidth
                                 label="Sessions"
@@ -128,7 +128,7 @@ const SubjectForm = () => {
                                 sx={styles.inputField}
                                 required
                             />
-                        </Grid>
+                        </Grid> */}
                         <Grid item xs={6}>
                             <Box display="flex" alignItems="flex-end">
                                 {index === 0 ? (

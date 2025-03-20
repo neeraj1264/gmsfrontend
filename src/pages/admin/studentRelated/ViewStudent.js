@@ -112,18 +112,26 @@ const ViewStudent = () => {
     }
 
     const removeHandler = (id, deladdress) => {
-        dispatch(removeStuff(id, deladdress))
-            .then(() => {
-                dispatch(getUserDetails(studentID, address));
-            })
+
+        setMessage("Sorry the delete function has been disabled for now.")
+        setShowPopup(true)
+        // dispatch(removeStuff(id, deladdress))
+        //     .then(() => {
+        //         dispatch(getUserDetails(studentID, address));
+        //     })
     }
 
     const removeSubAttendance = (subId) => {
-        dispatch(updateStudentFields(studentID, { subId }, "RemoveStudentSubAtten"))
-            .then(() => {
-                dispatch(getUserDetails(studentID, address));
-            })
+
+        setMessage("Sorry the delete function has been disabled for now.")
+        setShowPopup(true)
+
+        // dispatch(updateStudentFields(studentID, { subId }, "RemoveStudentSubAtten"))
+        //     .then(() => {
+        //         dispatch(getUserDetails(studentID, address));
+        //     })
     }
+
 
     const overallAttendancePercentage = calculateOverallAttendancePercentage(subjectAttendance);
     const overallAbsentPercentage = 100 - overallAttendancePercentage;
