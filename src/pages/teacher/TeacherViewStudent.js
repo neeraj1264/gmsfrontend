@@ -171,7 +171,7 @@ const TeacherViewStudent = () => {
                     <br /><br /><br />
                     <h3>Subject Marks:</h3>
 
-                    {subjectMarks && Array.isArray(subjectMarks) && subjectMarks.length > 0 &&
+                    {/* {subjectMarks && Array.isArray(subjectMarks) && subjectMarks.length > 0 &&
                         <>
                             {subjectMarks.map((result, index) => {
                                 if (result.subName.subName === teachSubject) {
@@ -198,7 +198,7 @@ const TeacherViewStudent = () => {
                                 return null
                             })}
                         </>
-                    }
+                    } */}
                     <PurpleButton variant="contained"
                         onClick={() =>
                             navigate(
