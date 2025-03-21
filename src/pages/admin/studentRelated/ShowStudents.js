@@ -1,21 +1,18 @@
-import { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 import { getAllStudents } from '../../../redux/studentRelated/studentHandle';
 import { deleteUser } from '../../../redux/userRelated/userHandle';
 import {
-    Paper, Box, IconButton
+    Paper, Box, IconButton, TextField
 } from '@mui/material';
 import PersonRemoveIcon from '@mui/icons-material/PersonRemove';
 import { BlackButton, BlueButton, GreenButton } from '../../../components/buttonStyles';
 import TableTemplate from '../../../components/TableTemplate';
 import PersonAddAlt1Icon from '@mui/icons-material/PersonAddAlt1';
 import SpeedDialTemplate from '../../../components/SpeedDialTemplate';
-
-import * as React from 'react';
 import Button from '@mui/material/Button';
 import ButtonGroup from '@mui/material/ButtonGroup';
-// import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import { KeyboardArrowUp, KeyboardArrowDown } from '@mui/icons-material';
 import ClickAwayListener from '@mui/material/ClickAwayListener';
 import Grow from '@mui/material/Grow';
@@ -25,11 +22,13 @@ import MenuList from '@mui/material/MenuList';
 import Popup from '../../../components/Popup';
 
 const ShowStudents = () => {
-
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const { studentsList, loading, error, response } = useSelector((state) => state.student);
-    const { currentUser } = useSelector(state => state.user)
+    const { currentUser } = useSelector(state => state.user);
+
+    // State for search input
+    const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
         dispatch(getAllStudents(currentUser._id));
@@ -39,26 +38,26 @@ const ShowStudents = () => {
         console.log(error);
     }
 
-    const [showPopup, setShowPopup] = React.useState(false);
-    const [message, setMessage] = React.useState("");
+    const [showPopup, setShowPopup] = useState(false);
+    const [message, setMessage] = useState("");
 
     const deleteHandler = (deleteID, address) => {
         console.log(deleteID);
         console.log(address);
-        setMessage("Sorry the delete function has been disabled for now.")
-        setShowPopup(true)
+        setMessage("Sorry the delete function has been disabled for now.");
+        setShowPopup(true);
 
         // dispatch(deleteUser(deleteID, address))
         //     .then(() => {
         //         dispatch(getAllStudents(currentUser._id));
         //     })
-    }
+    };
 
     const studentColumns = [
         { id: 'name', label: 'Name', minWidth: 170 },
         { id: 'rollNum', label: 'Roll Number', minWidth: 100 },
         { id: 'sclassName', label: 'Class', minWidth: 170 },
-    ]
+    ];
 
     const studentRows = studentsList && studentsList.length > 0 && studentsList.map((student) => {
         return {
@@ -67,14 +66,20 @@ const ShowStudents = () => {
             sclassName: student.sclassName.sclassName,
             id: student._id,
         };
-    })
+    });
+
+    // Filter rows based on search query (case-insensitive)
+    const filteredStudentRows =
+        studentRows && studentRows.filter((row) =>
+            row.name.toLowerCase().includes(searchQuery.toLowerCase())
+        );
 
     const StudentButtonHaver = ({ row }) => {
         const options = ['Take Attendance', 'Provide Marks'];
 
-        const [open, setOpen] = React.useState(false);
+        const [open, setOpen] = useState(false);
         const anchorRef = React.useRef(null);
-        const [selectedIndex, setSelectedIndex] = React.useState(0);
+        const [selectedIndex, setSelectedIndex] = useState(0);
 
         const handleClick = () => {
             console.info(`You clicked ${options[selectedIndex]}`);
@@ -86,10 +91,10 @@ const ShowStudents = () => {
         };
 
         const handleAttendance = () => {
-            navigate("/Admin/students/student/attendance/" + row.id)
-        }
+            navigate("/Admin/students/student/attendance/" + row.id);
+        };
         const handleMarks = () => {
-            navigate("/Admin/students/student/marks/" + row.id)
+            navigate("/Admin/students/student/marks/" + row.id);
         };
 
         const handleMenuItemClick = (event, index) => {
@@ -105,9 +110,9 @@ const ShowStudents = () => {
             if (anchorRef.current && anchorRef.current.contains(event.target)) {
                 return;
             }
-
             setOpen(false);
         };
+
         return (
             <>
                 <IconButton onClick={() => deleteHandler(row.id, "Student")}>
@@ -198,8 +203,22 @@ const ShowStudents = () => {
                         </Box>
                         :
                         <Paper sx={{ width: '100%', overflow: 'hidden' }}>
-                            {Array.isArray(studentsList) && studentsList.length > 0 &&
-                                <TableTemplate buttonHaver={StudentButtonHaver} columns={studentColumns} rows={studentRows} />
+                            {/* Search Bar */}
+                            <Box sx={{ padding: 2 }}>
+                                <TextField
+                                    label="Search Student"
+                                    variant="outlined"
+                                    fullWidth
+                                    value={searchQuery}
+                                    onChange={(e) => setSearchQuery(e.target.value)}
+                                />
+                            </Box>
+                            {Array.isArray(filteredStudentRows) && filteredStudentRows.length > 0 ?
+                                <TableTemplate buttonHaver={StudentButtonHaver} columns={studentColumns} rows={filteredStudentRows} />
+                                :
+                                <Box sx={{ padding: 2, textAlign: 'center' }}>
+                                    No matching students found.
+                                </Box>
                             }
                             <SpeedDialTemplate actions={actions} />
                         </Paper>

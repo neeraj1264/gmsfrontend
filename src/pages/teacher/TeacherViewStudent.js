@@ -150,9 +150,9 @@ const TeacherViewStudent = () => {
                                     return null
                                 }
                             })}
-                            <div>
+                            {/* <div>
                                 Overall Attendance Percentage: {overallAttendancePercentage.toFixed(2)}%
-                            </div>
+                            </div> */}
 
                             <CustomPieChart data={chartData} />
                         </>

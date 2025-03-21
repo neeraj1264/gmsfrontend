@@ -20,12 +20,12 @@ const StudentSideBar = () => {
                     </ListItemIcon>
                     <ListItemText primary="Home" />
                 </ListItemButton>
-                <ListItemButton component={Link} to="/Student/subjects">
+                {/* <ListItemButton component={Link} to="/Student/subjects">
                     <ListItemIcon>
                         <AssignmentIcon color={location.pathname.startsWith("/Student/subjects") ? 'primary' : 'inherit'} />
                     </ListItemIcon>
                     <ListItemText primary="Subjects" />
-                </ListItemButton>
+                </ListItemButton> */}
                 <ListItemButton component={Link} to="/Student/attendance">
                     <ListItemIcon>
                         <ClassOutlinedIcon color={location.pathname.startsWith("/Student/attendance") ? 'primary' : 'inherit'} />

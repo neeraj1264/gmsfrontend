@@ -132,9 +132,9 @@ const ViewStdAttendance = () => {
                     }
                     )}
                 </Table>
-                <div>
+                {/* <div>
                     Overall Attendance Percentage: {overallAttendancePercentage.toFixed(2)}%
-                </div>
+                </div> */}
             </>
         )
     }

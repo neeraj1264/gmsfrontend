@@ -227,9 +227,9 @@ const ViewStudent = () => {
                         }
                         )}
                     </Table>
-                    <div>
+                    {/* <div>
                         Overall Attendance Percentage: {overallAttendancePercentage.toFixed(2)}%
-                    </div>
+                    </div> */}
                     <Button variant="contained" color="error" startIcon={<DeleteIcon />} onClick={() => removeHandler(studentID, "RemoveStudentAtten")}>Delete All</Button>
                     <Button variant="contained" sx={styles.styledButton} onClick={() => navigate("/Admin/students/student/attendance/" + studentID)}>
                         Add Attendance
