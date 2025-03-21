@@ -159,7 +159,7 @@ const ViewStudent = () => {
                     <Table>
                         <TableHead>
                             <StyledTableRow>
-                                <StyledTableCell>Subject</StyledTableCell>
+                                <StyledTableCell>Student Name</StyledTableCell>
                                 <StyledTableCell>Present</StyledTableCell>
                                 <StyledTableCell>Total Sessions</StyledTableCell>
                                 <StyledTableCell>Attendance Percentage</StyledTableCell>
@@ -171,7 +171,7 @@ const ViewStudent = () => {
                             return (
                                 <TableBody key={index}>
                                     <StyledTableRow>
-                                        <StyledTableCell>{subName}</StyledTableCell>
+                                        <StyledTableCell>{userDetails.name}</StyledTableCell>
                                         <StyledTableCell>{present}</StyledTableCell>
                                         <StyledTableCell>{sessions}</StyledTableCell>
                                         <StyledTableCell>{subjectAttendancePercentage}%</StyledTableCell>
@@ -419,7 +419,7 @@ const ViewStudent = () => {
                                 <TabList onChange={handleChange} sx={{ position: 'fixed', width: '100%', bgcolor: 'background.paper', zIndex: 1 }}>
                                     <Tab label="Details" value="1" />
                                     <Tab label="Attendance" value="2" />
-                                    <Tab label="Marks" value="3" />
+                                    {/* <Tab label="Marks" value="3" /> */}
                                 </TabList>
                             </Box>
                             <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>
@@ -429,9 +429,9 @@ const ViewStudent = () => {
                                 <TabPanel value="2">
                                     <StudentAttendanceSection />
                                 </TabPanel>
-                                <TabPanel value="3">
+                                {/* <TabPanel value="3">
                                     <StudentMarksSection />
-                                </TabPanel>
+                                </TabPanel> */}
                             </Container>
                         </TabContext>
                     </Box>

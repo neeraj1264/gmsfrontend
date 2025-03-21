@@ -223,9 +223,9 @@ const ClassDetails = () => {
                 <Typography variant="h5" gutterBottom>
                     This is Class {sclassDetails && sclassDetails.sclassName}
                 </Typography>
-                <Typography variant="h6" gutterBottom>
+                {/* <Typography variant="h6" gutterBottom>
                     Number of Subjects: {numberOfSubjects}
-                </Typography>
+                </Typography> */}
                 <Typography variant="h6" gutterBottom>
                     Number of Students: {numberOfStudents}
                 </Typography>
@@ -260,24 +260,24 @@ const ClassDetails = () => {
                             <Box sx={{ borderBottom: 1, borderColor: 'divider' }}>
                                 <TabList onChange={handleChange} sx={{ position: 'fixed', width: '100%', bgcolor: 'background.paper', zIndex: 1 }}>
                                     <Tab label="Details" value="1" />
-                                    <Tab label="Subjects" value="2" />
+                                    {/* <Tab label="Subjects" value="2" /> */}
                                     <Tab label="Students" value="3" />
-                                    <Tab label="Teachers" value="4" />
+                                    {/* <Tab label="Teachers" value="4" /> */}
                                 </TabList>
                             </Box>
                             <Container sx={{ marginTop: "3rem", marginBottom: "4rem" }}>
                                 <TabPanel value="1">
                                     <ClassDetailsSection />
                                 </TabPanel>
-                                <TabPanel value="2">
+                                {/* <TabPanel value="2">
                                     <ClassSubjectsSection />
-                                </TabPanel>
+                                </TabPanel> */}
                                 <TabPanel value="3">
                                     <ClassStudentsSection />
                                 </TabPanel>
-                                <TabPanel value="4">
+                                {/* <TabPanel value="4">
                                     <ClassTeachersSection />
-                                </TabPanel>
+                                </TabPanel> */}
                             </Container>
                         </TabContext>
                     </Box>
