@@ -39,7 +39,7 @@ const ProfileCard = styled(Card)`
 const ProfileCardContent = styled(CardContent)`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
 `;
 
 const ProfileText = styled(Typography)`

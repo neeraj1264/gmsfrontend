@@ -33,6 +33,7 @@ a {
   background-size: cover;
   background-blend-mode: darken; */
   font-family: "Josefin Sans", sans-serif;
+  margin: 10rem 0;
 }
 
 .registerTitle {
