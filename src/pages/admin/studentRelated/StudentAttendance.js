@@ -25,7 +25,7 @@ const StudentAttendance = ({ situation }) => {
     const [subjectName, setSubjectName] = useState("");
     const [chosenSubName, setChosenSubName] = useState("");
     const [status, setStatus] = useState('');
-    const [date, setDate] = useState('');
+    const [date, setDate] = useState(new Date().toISOString().split('T')[0]);
 
     const [showPopup, setShowPopup] = useState(false);
     const [message, setMessage] = useState("");
@@ -51,6 +51,13 @@ const StudentAttendance = ({ situation }) => {
         }
     }, [dispatch, userDetails]);
 
+    useEffect(() => {
+        if (subjectsList.length > 0) {
+            setSubjectName(subjectsList[0].subName);
+            setChosenSubName(subjectsList[0]._id);
+        }
+    }, [subjectsList]);
+    
     const changeHandler = (event) => {
         const selectedSubject = subjectsList.find(
             (subject) => subject.subName === event.target.value
@@ -125,27 +132,28 @@ const StudentAttendance = ({ situation }) => {
                                     {
                                         situation === "Student" &&
                                         <FormControl fullWidth>
-                                            <InputLabel id="demo-simple-select-label">Select Subject</InputLabel>
-                                            <Select
-                                                labelId="demo-simple-select-label"
-                                                id="demo-simple-select"
-                                                value={subjectName}
-                                                label="Choose an option"
-                                                onChange={changeHandler} required
-                                            >
-                                                {subjectsList ?
-                                                    subjectsList.map((subject, index) => (
-                                                        <MenuItem key={index} value={subject.subName}>
-                                                            {subject.subName}
-                                                        </MenuItem>
-                                                    ))
-                                                    :
-                                                    <MenuItem value="Select Subject">
-                                                        Add Subjects For Attendance
+                                        <InputLabel id="demo-simple-select-label">Select Subject</InputLabel>
+                                        <Select
+                                            labelId="demo-simple-select-label"
+                                            id="demo-simple-select"
+                                            value={subjectName}
+                                            label="Choose an option"
+                                            onChange={changeHandler}
+                                            required
+                                        >
+                                            {subjectsList.length > 0 ? (
+                                                subjectsList.map((subject, index) => (
+                                                    <MenuItem key={index} value={subject.subName}>
+                                                        {subject.subName}
                                                     </MenuItem>
-                                                }
-                                            </Select>
-                                        </FormControl>
+                                                ))
+                                            ) : (
+                                                <MenuItem value="Select Subject">
+                                                    Add Subjects For Attendance
+                                                </MenuItem>
+                                            )}
+                                        </Select>
+                                    </FormControl>                                    
                                     }
                                     <FormControl fullWidth>
                                         <InputLabel id="demo-simple-select-label">Attendance Status</InputLabel>

@@ -155,13 +155,14 @@ const AddStudent = ({ situation }) => {
             required
           />
 
-          <label>Date of Birth</label>
+          <label>Date of Birth*</label>
           <input
             className="registerInput"
             type="date"
             placeholder="Enter student's date of birth..."
             value={dob}
             onChange={(event) => setDob(event.target.value)}
+            required
           />
 
           <label>Gender*</label>
